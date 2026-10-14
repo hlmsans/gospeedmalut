@@ -3,202 +3,249 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>goSpeedMalut</title>
   <style>
-    body{margin:0;font-family:Arial,sans-serif;background:#eff8ff;color:#123047;line-height:1.6}
-    header{background:#075985;color:white;text-align:center;padding:25px 15px}
-    main{max-width:600px;margin:20px auto;padding:0 14px}
-    .panel{background:white;border-radius:14px;padding:18px;margin-bottom:18px;box-shadow:0 3px 12px #0000000d}
-    h2{color:#075985;margin-top:0}
-    label{display:block;font-weight:bold;margin-top:14px}
-    select,input{width:100%;padding:12px;margin-top:5px;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;background:white}
-    button{width:100%;padding:14px;margin-top:20px;border:0;border-radius:9px;background:#075985;color:white;font-size:16px;font-weight:bold}
-    .ringkasan{white-space:pre-line;background:#e0f2fe;padding:12px;border-radius:8px}
-    .baris,.tarif{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #e2e8f0}
-    .baris span{color:#64748b}
-    .baris strong,.tarif strong{text-align:right}
-    .harga{color:#047857;font-size:20px}
-    .catatan{background:#fffbeb;padding:12px;border-radius:8px;margin-top:14px}
-    .info{font-size:14px;color:#64748b}
-    [hidden]{display:none!important}
-    footer{text-align:center;color:#64748b;padding:20px;font-size:13px}
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eff6ff;
+      color: #17324d;
+    }
+    header {
+      background: #075985;
+      color: white;
+      padding: 26px 16px;
+      text-align: center;
+    }
+    main {
+      max-width: 620px;
+      margin: 20px auto;
+      padding: 0 14px;
+    }
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 14px 0 6px;
+    }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: white;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 18px;
+      background: #0284c7;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .route {
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .price {
+      color: #047857;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    .note {
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    #status, #result {
+      margin-top: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
   </style>
 </head>
 <body>
-<header>
-  <h1>🌊 goSpeedMalut</h1>
-  <p>Cari perjalanan speedboat antarpelabuhan di Maluku Utara dengan mudah.</p>
-</header>
+  <header>
+    <h1>🌊 goSpeedMalut</h1>
+    <p>Cari perjalanan speedboat antarpelabuhan di Maluku Utara</p>
+  </header>
 
-<main>
-  <section class="panel">
-    <h2>🔎 Cari Perjalanan</h2>
-    <p class="info">Pilih pelabuhan keberangkatan, tujuan, tanggal, dan jumlah penumpang.</p>
+  <main>
+    <section class="card">
+      <h2>Cari perjalanan</h2>
 
-    <form id="formCari">
       <label for="asal">Pelabuhan keberangkatan</label>
-      <select id="asal" required>
-        <option value="Ternate">Ternate</option>
-        <option value="Sofifi">Sofifi</option>
-        <option value="Tidore">Tidore</option>
-        <option value="Loleo">Loleo</option>
+      <select id="asal">
+        <option value="">Memuat pelabuhan...</option>
       </select>
 
       <label for="tujuan">Pelabuhan tujuan</label>
-      <select id="tujuan" required>
-        <option value="Sofifi">Sofifi</option>
-        <option value="Ternate">Ternate</option>
-        <option value="Tidore">Tidore</option>
-        <option value="Loleo">Loleo</option>
+      <select id="tujuan">
+        <option value="">Pilih tujuan</option>
       </select>
 
       <label for="tanggal">Tanggal perjalanan</label>
-      <input type="date" id="tanggal" required>
+      <input id="tanggal" type="date">
 
-      <label for="penumpang">Jumlah penumpang</label>
-      <select id="penumpang">
-        <option value="1">1 orang</option>
-        <option value="2" selected>2 orang</option>
-        <option value="3">3 orang</option>
-        <option value="4">4 orang</option>
-        <option value="5">5 orang</option>
-        <option value="6">6 orang</option>
-        <option value="7">7 orang</option>
-        <option value="8">8 orang</option>
-        <option value="9">9 orang</option>
-        <option value="10">10 orang</option>
+      <label for="jumlah">Jumlah penumpang</label>
+      <select id="jumlah">
+        <option value="1">1 penumpang</option>
+        <option value="2">2 penumpang</option>
+        <option value="3">3 penumpang</option>
+        <option value="4">4 penumpang</option>
+        <option value="5">5 penumpang</option>
       </select>
 
-      <button type="submit">🔎 CARI SPEEDBOAT</button>
-    </form>
-  </section>
+      <button id="cari">CARI SPEEDBOAT</button>
+      <div id="status">Menghubungkan ke database...</div>
+      <div id="result"></div>
+    </section>
 
-  <section class="panel" id="hasil" hidden>
-    <h2>Hasil Pencarian</h2>
-    <div id="ringkasan" class="ringkasan"></div>
+    <section class="card">
+      <h2>Rute dan tarif awal</h2>
+      <div class="route">
+        Ternate ↔ Sofifi
+        <div class="price">Rp63.000 / penumpang</div>
+      </div>
+      <div class="route">
+        Ternate ↔ Loleo
+        <div class="price">Rp83.000 / penumpang</div>
+      </div>
+      <div class="route">
+        Ternate ↔ Tidore
+        <div class="price">Belum tersedia</div>
+      </div>
+      <div class="route">
+        Loleo ↔ Tidore
+        <div class="price">Belum tersedia</div>
+      </div>
+      <p class="note">
+        Tarif adalah data awal dan perlu dikonfirmasi kepada operator.
+        Jadwal, kursi, pemesanan, pembayaran, dan tiket belum terhubung.
+      </p>
+    </section>
+  </main>
 
-    <h3 id="judulRute"></h3>
-    <div class="baris"><span>Harga per penumpang</span><strong id="harga" class="harga"></strong></div>
-    <div class="baris"><span>Jumlah penumpang</span><strong id="jumlah"></strong></div>
-    <div class="baris"><span>Total tarif penumpang</span><strong id="total" class="harga"></strong></div>
-    <div class="baris"><span>Nama operator</span><strong>Belum tersedia</strong></div>
-    <div class="baris"><span>Jadwal keberangkatan</span><strong>Perlu konfirmasi</strong></div>
-    <div class="baris"><span>Ketersediaan kursi</span><strong>Belum dikonfirmasi</strong></div>
-    <div id="catatan" class="catatan"></div>
-    <p class="info">Pemesanan belum tersedia. Website belum terhubung dengan operator speedboat.</p>
-  </section>
+  <script type="module">
+    import { createClient } from
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-  <section class="panel">
-    <h2>🛥️ Rute dan Tarif</h2>
-    <div class="tarif"><span>Ternate ↔ Sofifi</span><strong>Rp63.000</strong></div>
-    <div class="tarif"><span>Ternate ↔ Loleo</span><strong>Rp83.000</strong></div>
-    <div class="tarif"><span>Ternate ↔ Tidore</span><strong>Belum tersedia</strong></div>
-    <div class="tarif"><span>Loleo ↔ Tidore</span><strong>Belum tersedia</strong></div>
-    <p class="info">Tarif berasal dari data awal pengembangan. Konfirmasikan kepada operator sebelum pembayaran.</p>
-  </section>
+    const SUPABASE_URL =
+      "https://ttsksafskrtjwmcghxjy.supabase.co";
 
-  <section class="panel">
-    <h2>ℹ️ Informasi Penting</h2>
-    <p>Website masih dalam tahap pengembangan. Jadwal, operator, dan ketersediaan kursi belum terhubung ke sistem operator.</p>
-    <p>Website belum menerima pembayaran atau menerbitkan tiket asli.</p>
-  </section>
-</main>
+    const SUPABASE_PUBLISHABLE_KEY =
+      "TEMPEL_PUBLISHABLE_KEY_KAMU_DI_SINI";
 
-<footer>© 2026 goSpeedMalut</footer>
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
 
-<script>
-  function kunciRute(asal, tujuan) {
-    return [asal, tujuan]
-      .map(nama => nama.trim().toLowerCase())
-      .sort()
-      .join('|');
-  }
+    const asal = document.getElementById("asal");
+    const tujuan = document.getElementById("tujuan");
+    const status = document.getElementById("status");
+    const result = document.getElementById("result");
 
-  const tarif = Object.create(null);
-  tarif[kunciRute('Ternate', 'Sofifi')] = 63000;
-  tarif[kunciRute('Ternate', 'Loleo')] = 83000;
-  tarif[kunciRute('Ternate', 'Tidore')] = null;
-  tarif[kunciRute('Loleo', 'Tidore')] = null;
+    const harga = {
+      "Ternate|Sofifi": 63000,
+      "Sofifi|Ternate": 63000,
+      "Ternate|Loleo": 83000,
+      "Loleo|Ternate": 83000
+    };
 
-  function rupiah(angka) {
-    return 'Rp' + angka.toLocaleString('id-ID');
-  }
+    const rupiah = angka =>
+      new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0
+      }).format(angka);
 
-  function tanggalHariIni() {
-    const sekarang = new Date();
-    const tahun = sekarang.getFullYear();
-    const bulan = String(sekarang.getMonth() + 1).padStart(2, '0');
-    const hari = String(sekarang.getDate()).padStart(2, '0');
-    return tahun + '-' + bulan + '-' + hari;
-  }
+    async function muatPelabuhan() {
+      status.textContent = "Memuat daftar pelabuhan...";
 
-  const inputTanggal = document.getElementById('tanggal');
-  inputTanggal.min = tanggalHariIni();
-  inputTanggal.value = tanggalHariIni();
+      const { data, error } = await supabase
+        .from("Pelabuhan")
+        .select("nama")
+        .order("nama");
 
-  document.getElementById('formCari').addEventListener('submit', function(event) {
-    event.preventDefault();
+      if (error) {
+        status.textContent =
+          "Pelabuhan gagal dimuat. Periksa pengaturan Supabase.";
+        console.error(error);
+        return;
+      }
 
-    const asal = document.getElementById('asal').value;
-    const tujuan = document.getElementById('tujuan').value;
-    const tanggal = inputTanggal.value;
-    const penumpang = Number(document.getElementById('penumpang').value);
-    const hasil = document.getElementById('hasil');
+      asal.innerHTML =
+        '<option value="">Pilih keberangkatan</option>';
+      tujuan.innerHTML =
+        '<option value="">Pilih tujuan</option>';
 
-    if (asal === tujuan) {
-      alert('Pelabuhan tujuan harus berbeda dari pelabuhan asal.');
-      return;
+      for (const item of data) {
+        for (const daftar of [asal, tujuan]) {
+          const option = document.createElement("option");
+          option.value = item.nama;
+          option.textContent = item.nama;
+          daftar.appendChild(option);
+        }
+      }
+
+      status.textContent = data.length
+        ? "Daftar pelabuhan berhasil dimuat."
+        : "Belum ada data pelabuhan.";
     }
 
-    if (!tanggal || tanggal < tanggalHariIni()) {
-      alert('Pilih tanggal hari ini atau tanggal mendatang.');
-      return;
-    }
+    document.getElementById("tanggal").min =
+      new Date().toLocaleDateString("en-CA");
 
-    const kunci = kunciRute(asal, tujuan);
-    const terdaftar = Object.prototype.hasOwnProperty.call(tarif, kunci);
-    const harga = terdaftar ? tarif[kunci] : undefined;
+    document.getElementById("cari").addEventListener("click", () => {
+      const dari = asal.value;
+      const ke = tujuan.value;
+      const tanggal = document.getElementById("tanggal").value;
+      const jumlah = Number(
+        document.getElementById("jumlah").value
+      );
 
-    document.getElementById('ringkasan').textContent =
-      '📍 ' + asal + ' → ' + tujuan +
-      '\n📅 Tanggal: ' + tanggal +
-      '\n👥 Penumpang: ' + penumpang + ' orang';
+      result.textContent = "";
 
-    document.getElementById('judulRute').textContent = asal + ' → ' + tujuan;
-    document.getElementById('jumlah').textContent = penumpang + ' orang';
+      if (!dari || !ke || !tanggal) {
+        result.textContent =
+          "Pilih pelabuhan asal, tujuan, dan tanggal perjalanan.";
+        return;
+      }
 
-    if (!terdaftar) {
-      document.getElementById('harga').textContent = 'Rute belum terdaftar';
-      document.getElementById('total').textContent = 'Belum dapat dihitung';
-      document.getElementById('catatan').textContent =
-        'Tarif untuk rute ini belum dimasukkan ke sistem.';
-    } else if (harga === null) {
-      document.getElementById('harga').textContent = 'Belum tersedia';
-      document.getElementById('total').textContent = 'Belum dapat dihitung';
-      document.getElementById('catatan').textContent =
-        'Tarif rute ini belum ditentukan. Kami tidak menggunakan harga dari rute lain.';
-    } else {
-      document.getElementById('harga').textContent = rupiah(harga);
-      document.getElementById('total').textContent = rupiah(harga * penumpang);
-      document.getElementById('catatan').textContent =
-        'Tarif awal tersedia. Konfirmasikan kepada operator sebelum pembayaran.';
-    }
+      if (dari === ke) {
+        result.textContent =
+          "Pelabuhan asal dan tujuan harus berbeda.";
+        return;
+      }
 
-    hasil.hidden = false;
-    hasil.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-</script>
-<script type="module">
-  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-  const SUPABASE_URL = 'https://ttsksafskrtjwmcghxjy.supabase.co';
-  const SUPABASE_PUBLISHABLE_KEY = 'TEMPEL_PUBLISHABLE_KEY_KAMU_DI_SINI';
-  const supabase = createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-  window.supabaseClient = supabase;
-  console.log('GoSpeedMalut: koneksi Supabase siap.');
-</script>
+      const tarif = harga[`${dari}|${ke}`];
+
+      if (tarif === undefined) {
+        result.textContent =
+          `Tarif rute ${dari} ke ${ke} belum tersedia. ` +
+          "Silakan konfirmasi kepada operator.";
+        return;
+      }
+
+      result.textContent =
+        `Tarif awal per penumpang: ${rupiah(tarif)}. ` +
+        `Total perkiraan ${jumlah} penumpang: ${rupiah(tarif * jumlah)}. ` +
+        `Tanggal: ${tanggal}. Konfirmasikan tarif dan jadwal kepada operator.`;
+    });
+
+    muatPelabuhan();
+  </script>
 </body>
 </html>
