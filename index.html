@@ -189,5 +189,16 @@
     hasil.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 </script>
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  const SUPABASE_URL = 'https://ttsksafskrtjwmcghxjy.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'TEMPEL_PUBLISHABLE_KEY_KAMU_DI_SINI';
+  const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+  window.supabaseClient = supabase;
+  console.log('GoSpeedMalut: koneksi Supabase siap.');
+</script>
 </body>
 </html>
