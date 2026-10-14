@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#063b63">
+  <title>goSpeedMalut - Tiket Speedboat</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef7fb;
+      color: #123047;
+    }
+
+    header {
+      background: linear-gradient(135deg, #063b63, #087eaa);
+      color: white;
+      padding: 30px 20px;
+      border-radius: 0 0 26px 26px;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    header p {
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    main {
+      max-width: 650px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px #0000000d;
+    }
+
+    h2, h3 {
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    input, select {
+      border: 1px solid #cbd8e2;
+      background: white;
+      color: #123047;
+    }
+
+    button {
+      border: 0;
+      background: #087eaa;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      opacity: 0.85;
+    }
+
+    .hasil {
+      margin-top: 20px;
+      font-weight: normal;
+    }
+
+    .hasil-card {
+      border: 1px solid #cbd8e2;
+      background: #f7fbff;
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 14px;
+    }
+
+    .status {
+      display: inline-block;
+      background: #fff1cc;
+      color: #805400;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .detail {
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .info {
+      line-height: 1.7;
+      color: #40596b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #607789;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>goSpeedMalut 🌊</h1>
+    <p>
+      Cari perjalanan speedboat antarpelabuhan
+      di Maluku Utara dengan lebih mudah.
+    </p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>🔎 Cari Perjalanan</h2>
+      <p class="info">
+        Pilih rute dan tanggal perjalanan untuk melihat
+        informasi speedboat yang tersedia.
+      </p>
+
+      <form id="formCari">
+        <label for="asal">Pelabuhan keberangkatan</label>
+        <select id="asal" required>
+          <option value="Ternate">Ternate</option>
+          <option value="Sofifi">Sofifi</option>
+          <option value="Tidore">Tidore</option>
+        </select>
+
+        <label for="tujuan">Pelabuhan tujuan</label>
+        <select id="tujuan" required>
+          <option value="Sofifi">Sofifi</option>
+          <option value="Tidore">Tidore</option>
+          <option value="Ternate">Ternate</option>
+        </select>
+
+        <label for="tanggal">Tanggal perjalanan</label>
+        <input id="tanggal" type="date" required>
+
+        <label for="penumpang">Jumlah penumpang</label>
+        <select id="penumpang" required>
+          <option value="1">1 orang</option>
+          <option value="2">2 orang</option>
+          <option value="3">3 orang</option>
+          <option value="4">4 orang</option>
+          <option value="5">5 orang</option>
+          <option value="6">6 orang</option>
+        </select>
+
+        <button type="submit">CARI SPEEDBOAT</button>
+      </form>
+
+      <div id="hasil" class="hasil" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h3>ℹ️ Informasi Penting</h3>
+      <p class="info">
+        Jadwal keberangkatan, nama operator, harga tiket,
+        dan ketersediaan kursi harus dikonfirmasi kepada
+        operator sebelum pemesanan.
+      </p>
+      <p class="info">
+        Website ini masih dalam tahap awal dan belum
+        menerima pembayaran atau menerbitkan tiket asli.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    goSpeedMalut © 2026<br>
+    Layanan informasi perjalanan speedboat Maluku Utara
+  </footer>
+
+  <script>
+    const formCari = document.getElementById('formCari');
+    const hasil = document.getElementById('hasil');
+
+    formCari.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const asal = document.getElementById('asal').value;
+      const tujuan = document.getElementById('tujuan').value;
+      const tanggal = document.getElementById('tanggal').value;
+      const penumpang = document.getElementById('penumpang').value;
+
+      if (asal === tujuan) {
+        hasil.textContent =
+          'Pelabuhan keberangkatan dan tujuan harus berbeda.';
+        return;
+      }
+
+      if (!tanggal) {
+        hasil.textContent = 'Silakan pilih tanggal perjalanan.';
+        return;
+      }
+
+      const tanggalDipilih = new Date(tanggal + 'T00:00:00');
+      const hariIni = new Date();
+      hariIni.setHours(0, 0, 0, 0);
+
+      if (tanggalDipilih < hariIni) {
+        hasil.textContent =
+          'Tanggal perjalanan tidak boleh sudah lewat.';
+        return;
+      }
+
+      hasil.replaceChildren();
+
+      const judul = document.createElement('h3');
+      judul.textContent = 'Hasil Pencarian';
+      hasil.appendChild(judul);
+
+      const kartu = document.createElement('div');
+      kartu.className = 'hasil-card';
+
+      const rute = document.createElement('h3');
+      rute.textContent = asal + ' → ' + tujuan;
+      kartu.appendChild(rute);
+
+      const detail = document.createElement('p');
+      detail.className = 'detail';
+      detail.textContent =
+        'Tanggal: ' + tanggal +
+        '\nJumlah penumpang: ' + penumpang + ' orang';
+      detail.style.whiteSpace = 'pre-line';
+      kartu.appendChild(detail);
+
+      const nama = document.createElement('p');
+      nama.innerHTML = '<strong>Nama speedboat:</strong> Belum tersedia';
+      kartu.appendChild(nama);
+
+      const jadwal = document.createElement('p');
+      jadwal.innerHTML = '<strong>Jadwal:</strong> Perlu konfirmasi operator';
+      kartu.appendChild(jadwal);
+
+      const harga = document.createElement('p');
+      harga.innerHTML = '<strong>Harga tiket:</strong> Belum tersedia';
+      kartu.appendChild(harga);
+
+      const kursi = document.createElement('p');
+      kursi.innerHTML = '<strong>Kursi:</strong> Belum dikonfirmasi';
+      kartu.appendChild(kursi);
+
+      const status = document.createElement('p');
+      status.className = 'status';
+      status.textContent = 'Menunggu konfirmasi operator';
+      kartu.appendChild(status);
+
+      hasil.appendChild(kartu);
+
+      const catatan = document.createElement('p');
+      catatan.className = 'info';
+      catatan.textContent =
+        'Informasi ini belum merupakan tiket atau konfirmasi pemesanan. ' +
+        'Harga dan jadwal akan ditampilkan setelah data operator tersedia.';
+      hasil.appendChild(catatan);
+    });
+  </script>
+</body>
+</html>
