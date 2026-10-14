@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>goSpeedMalut</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef7fb;
+      color: #123047;
+    }
+    header {
+      background: #063b63;
+      color: white;
+      padding: 28px 20px;
+      border-radius: 0 0 24px 24px;
+    }
+    h1 { margin-bottom: 8px; }
+    main { padding: 20px; }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px #0000000d;
+    }
+    label { display: block; margin-top: 14px; }
+    input, select, button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 13px;
+      margin-top: 7px;
+      border-radius: 10px;
+      border: 1px solid #cbd8e2;
+      font-size: 16px;
+    }
+    button {
+      background: #087eaa;
+      color: white;
+      border: 0;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    #hasil { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>goSpeedMalut 🌊</h1>
+    <p>Pesan tiket speedboat Maluku Utara dengan mudah.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Cari Perjalanan</h2>
+      <label for="asal">Pelabuhan keberangkatan</label>
+      <select id="asal">
+        <option>Ternate</option>
+        <option>Sofifi</option>
+        <option>Tidore</option>
+      </select>
+
+      <label for="tujuan">Pelabuhan tujuan</label>
+      <select id="tujuan">
+        <option>Sofifi</option>
+        <option>Tidore</option>
+        <option>Ternate</option>
+      </select>
+
+      <label for="tanggal">Tanggal perjalanan</label>
+      <input id="tanggal" type="date">
+
+      <label for="penumpang">Jumlah penumpang</label>
+      <select id="penumpang">
+        <option>1 orang</option>
+        <option>2 orang</option>
+        <option>3 orang</option>
+        <option>4 orang</option>
+      </select>
+
+      <button onclick="cari()">Cari Speedboat</button>
+      <p id="hasil"></p>
+    </section>
+
+    <section class="card">
+      <h3>Informasi</h3>
+      <p>Jadwal, operator, harga, dan ketersediaan kursi akan dikonfirmasi sebelum pemesanan dibuka.</p>
+      <p><strong>Prototype awal — belum menerima pembayaran atau menerbitkan tiket asli.</strong></p>
+    </section>
+  </main>
+
+  <script>
+    function cari() {
+      const asal = document.getElementById('asal').value;
+      const tujuan = document.getElementById('tujuan').value;
+      const tanggal = document.getElementById('tanggal').value;
+      const hasil = document.getElementById('hasil');
+
+      if (asal === tujuan) {
+        hasil.textContent = 'Pilih pelabuhan tujuan yang berbeda.';
+      } else if (!tanggal) {
+        hasil.textContent = 'Silakan pilih tanggal perjalanan.';
+      } else {
+        hasil.textContent =
+          'Pencarian prototype: ' + asal + ' ke ' + tujuan +
+          ', tanggal ' + tanggal +
+          '. Jadwal perlu dikonfirmasi kepada operator.';
+      }
+    }
+  </script>
+</body>
+</html>
